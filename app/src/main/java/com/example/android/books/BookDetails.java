@@ -12,7 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
-
+/*
+* Activity to display book details
+* */
 public class BookDetails extends AppCompatActivity {
     TextView book_name_textView;
     TextView auther_name_textView;
@@ -28,8 +30,7 @@ public class BookDetails extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-//        String uname=intent.getStringExtra("name");
-//        Toast.makeText(this, "Info on next page: "+uname , Toast.LENGTH_SHORT).show();
+        //Modify the fields in the book details activity depending upon the movie selected
 
         book_name_textView = (TextView) findViewById(R.id.book_name);
         book_name_textView.setText("Title: "+intent.getStringExtra("book_name"));
@@ -44,9 +45,5 @@ public class BookDetails extends AppCompatActivity {
         shortDescription.setText(intent.getStringExtra("short_description"));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-
     }
-
 }

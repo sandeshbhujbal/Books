@@ -43,6 +43,7 @@ public class MainActivityFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rv.setLayoutManager(llm);
 
+        //Initialise books object with some static data
         initializeData();
         RVAdapter adapter = new RVAdapter(books);
         rv.setAdapter(adapter);
@@ -59,8 +60,6 @@ public class MainActivityFragment extends Fragment {
         books.add(new Book("The 3 mistakes of my life", "Chetan Bhagat", R.drawable.three_mistakes, R.drawable.three_mistakes, "In late 2000, a young boy in Ahmedabad dreams of owning a business. To accomodate his friends passion, he opens a cricket shop. However, nothing comes easy in a turbulent city. To realise their goals, they will have to face it all-religious, politics, calamities, unacceptable love and, above all, their own mistakes. Will they make it? Can an individual's dreams overcome the nightmares of real life? Can we succeed despite mistakes?"));
         books.add(new Book("One night at the call center", "Chetan Bhagat", R.drawable.one_night, R.drawable.one_night, "In winter 2004, a writer met a young girl on an overnight train journey. To pass the time she offered to tell him a story. However she had one condition: that he make it into his second book. He hesitated but asked what the story is about. The girl said the stoyr was about six people working in a call center, set in one night. She said it was the night they got a phone call. A phone call from God. Are you ready to take the call?"));
         books.add(new Book("Revolution 2020", "Chetan Bhagat", R.drawable.revolution2020, R.drawable.revolution2020, "Once upon a time, in small-town India, thre lived two intelligent boys. One wanted to use his intelligence to make money. One wanted to use his intelligence to start a revolution. The problem was they both loved the same girl. Welcome to Revolution 2020. A story about childhood friends Gopal, Raghav and Aarti, who struggle to find success, love and happiness in varanasi. However it is not easy to attain these in an unfair society that rewards the corrupt. As Gopal gives into the system, and Raghav fights it, who will win?"));
-
-
     }
 
     public class RVAdapter extends RecyclerView.Adapter<RVAdapter.BookViewHolder> {
@@ -80,22 +79,24 @@ public class MainActivityFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(RVAdapter.BookViewHolder holder, final int position) {
-//            holder.cv .setOnClickListener(new MyOnClickListener());
 
             holder.cv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Toast.makeText(v.getContext(), "Recycle Click hellooo" + books.get(position).book_name, Toast.LENGTH_SHORT).show();
+                    /*
+                    * On clicking on book pass the book details to the intent, to display in the next activity
+                    * */
                     Intent intent = new Intent(getContext(), BookDetails.class);
                     intent.putExtra("book_name", books.get(position).book_name);
                     intent.putExtra("auther_name", books.get(position).book_auther);
                     intent.putExtra("book_cover", books.get(position).book_cover_id);
-                    intent.putExtra("short_description",books.get(position).description);
+                    intent.putExtra("short_description", books.get(position).description);
                     startActivity(intent);
 
                 }
             });
 
+            /*Pass the data to recycler view */
             holder.bookName.setText(books.get(position).book_name);
             holder.autherName.setText(books.get(position).book_auther);
             holder.bookCover.setImageResource(books.get(position).book_cover_id);
