@@ -1,8 +1,5 @@
 package com.example.android.books;
 
-/**
- * Created by Sandesh on 26-May-16.
- */
 /*
 * Book class to hold as book object
 * */

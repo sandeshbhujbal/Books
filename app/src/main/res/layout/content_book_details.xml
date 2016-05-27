@@ -80,5 +80,17 @@
 
                     android:textStyle="italic" />
         </ScrollView>
+
+
     </LinearLayout>
+    <LinearLayout android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        >
+        <Button android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:text="Share"
+            android:id="@+id/id_share_button"/>
+
+        </LinearLayout>
 </LinearLayout>
