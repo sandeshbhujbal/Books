@@ -33,6 +33,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -138,6 +139,10 @@ public class MainActivityFragment extends Fragment {
                     Snackbar snackbar = Snackbar
                             .make(getView(), no_records_msg, Snackbar.LENGTH_LONG);
                     snackbar.show();
+                } else if (o.toString() == "unknownHost"){
+                    Snackbar snackbar = Snackbar
+                            .make(getView(), no_internet_msg, Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
             }
             RVAdapter adapter = new RVAdapter(books);
@@ -191,7 +196,7 @@ public class MainActivityFragment extends Fragment {
                         String book_title = object.getJSONObject("volumeInfo").getString("title");
                         String authers = "";
                         JSONArray authers_array = object.getJSONObject("volumeInfo").getJSONArray("authors");
-                        Log.e("authors", authers_array.toString());
+
                         for (int j = 0; j < object.getJSONObject("volumeInfo").getJSONArray("authors").length(); j++) {
                             if (authers != "")
                             {
@@ -212,11 +217,13 @@ public class MainActivityFragment extends Fragment {
                     }
                 }
 
-            } catch (IOException e) {
-                Log.e("temp", e.toString());
+            } catch (UnknownHostException e){
+                return "unknownHost";
+            }
+            catch (IOException e) {
                 Log.e("PlaceholderFragment", "Error ", e);
                 return "ioException";
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 Log.e("exception", e.toString());
                 return "emptyBuffer";
             } finally {
