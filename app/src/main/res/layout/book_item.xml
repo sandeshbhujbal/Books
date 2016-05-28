@@ -12,7 +12,6 @@
         android:id="@+id/cv"
         card_view:cardBackgroundColor="@color/cardViewColor"
         card_view:cardCornerRadius="10dp"
-
         >
         <RelativeLayout
             android:layout_width="match_parent"
@@ -35,14 +34,14 @@
                 android:layout_toRightOf="@+id/book_cover"
                 android:layout_alignParentTop="true"
                 android:text="@string/app_name"
-                android:textSize="22dp"
+                android:textSize="22sp"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/book_auther"
                 android:text="Auther"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:layout_toRightOf="@+id/book_cover"
                 android:layout_below="@+id/book_name"
                 />
