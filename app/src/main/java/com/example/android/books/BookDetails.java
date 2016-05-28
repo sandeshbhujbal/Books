@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 /*
 * Activity to display book details
 * */
@@ -40,7 +42,8 @@ public class BookDetails extends AppCompatActivity {
         auther_name_textView.setText("Auther: "+intent.getStringExtra("auther_name"));
 
         book_cover_imageView = (ImageView) findViewById(R.id.book_details_cover);
-        book_cover_imageView.setImageResource(intent.getIntExtra("book_cover",5));
+//        book_cover_imageView.setImageResource(intent.getIntExtra("book_cover",5));
+        Picasso.with(this).load(intent.getStringExtra("book_cover")).into(book_cover_imageView);
 
         shortDescription = (TextView) findViewById(R.id.description);
         shortDescription.setText(intent.getStringExtra("short_description"));
@@ -76,7 +79,8 @@ public class BookDetails extends AppCompatActivity {
                         , null));
 
                 dialogue_cover_image = (ImageView)settingsDialog.findViewById(R.id.id_cover_dialogue_image);
-                dialogue_cover_image.setImageResource(intent.getIntExtra("book_cover",0));
+//                dialogue_cover_image.setImageResource(intent.getIntExtra("book_cover",0));
+                Picasso.with(v.getContext()).load(intent.getStringExtra("book_cover")).into(dialogue_cover_image);
 
                 settingsDialog.show();
             }
