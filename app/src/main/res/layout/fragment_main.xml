@@ -18,6 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_width="0dp"
         android:layout_weight="1"
+        android:textSize="16sp"
+        android:padding="14dp"
         android:hint="Search Book/Auther"
         android:id="@+id/input_search"
         />

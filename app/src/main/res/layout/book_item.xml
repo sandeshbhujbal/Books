@@ -35,16 +35,19 @@
                 android:layout_toRightOf="@+id/book_cover"
                 android:layout_alignParentTop="true"
                 android:text="@string/app_name"
-                android:textSize="22sp"
+                android:textColor="#000000"
+                android:textSize="16sp"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/book_auther"
                 android:text="Auther"
-                android:textSize="18sp"
+                android:textSize="12sp"
                 android:layout_toRightOf="@+id/book_cover"
                 android:layout_below="@+id/book_name"
+                android:textStyle="italic"
+                android:textColor="#000000"
                 />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
