@@ -86,7 +86,8 @@ public class MainActivityFragment extends Fragment {
                 }
                 else {
                     String search_string = input_search.getText().toString();
-                    initializeData(base_api_url+search_string.replaceAll(" ",""));
+                    initializeData(base_api_url+search_string.replaceAll(" ","%20"));
+
                     InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getApplicationWindowToken(),0);
                 }
@@ -214,24 +215,46 @@ public class MainActivityFragment extends Fragment {
                 for (int i = 0; i < booksArray.length(); i++) {
                     try {
                         JSONObject object = booksArray.getJSONObject(i);
-
-                        String book_title = object.getJSONObject("volumeInfo").getString("title");
-                        String authers = "";
-                        JSONArray authers_array = object.getJSONObject("volumeInfo").getJSONArray("authors");
-
-                        for (int j = 0; j < object.getJSONObject("volumeInfo").getJSONArray("authors").length(); j++) {
-                            if (authers != "")
-                            {
-                                authers = authers + ", " + object.getJSONObject("volumeInfo").getJSONArray("authors").get(j).toString();
-                            }
-                            else
-                            {
-                                authers = object.getJSONObject("volumeInfo").getJSONArray("authors").get(j).toString();
-                            }
-
+                        String book_title;
+                        try {
+                            book_title = object.getJSONObject("volumeInfo").getString("title");
+                        }catch (Exception e)
+                        {
+                            book_title = "Book title";
                         }
-                        String img_url = object.getJSONObject("volumeInfo").getJSONObject("imageLinks").getString("thumbnail");
-                        String short_description = object.getJSONObject("volumeInfo").getString("description");
+
+                        String authers = "";
+                        try {
+                            JSONArray authers_array = object.getJSONObject("volumeInfo").getJSONArray("authors");
+
+                            for (int j = 0; j < object.getJSONObject("volumeInfo").getJSONArray("authors").length(); j++) {
+                                if (authers != "") {
+                                    authers = authers + ", " + object.getJSONObject("volumeInfo").getJSONArray("authors").get(j).toString();
+                                } else {
+                                    authers = object.getJSONObject("volumeInfo").getJSONArray("authors").get(j).toString();
+                                }
+
+                            }
+                        }catch (Exception e)
+                        {
+                            authers = "List of authers";
+                        }
+                        String img_url;
+                        try {
+                            img_url = object.getJSONObject("volumeInfo").getJSONObject("imageLinks").getString("thumbnail");
+                        }catch (Exception e)
+                        {
+                            img_url = "img_url";
+                        }
+
+                        String short_description;
+                        try {
+                            short_description = object.getJSONObject("volumeInfo").getString("description");
+                        }catch (Exception e)
+                        {
+                            short_description = "Description";
+                        }
+
                         book = new Book(book_title, authers, 1, 1, short_description, img_url);
                         books.add(book);
                     } catch (Exception e) {
