@@ -1,5 +1,6 @@
 package com.example.android.books;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -92,7 +93,6 @@ public class MainActivityFragment extends Fragment {
                     initializeData(base_api_url+search_string.replaceAll(" ",""));
                     InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getContext().INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getApplicationWindowToken(),0);
-
                 }
             }
         });
@@ -127,9 +127,24 @@ public class MainActivityFragment extends Fragment {
     }
 
     public class fetchBooks extends AsyncTask<String, Void, Object> {
+        ProgressDialog pd;
+
+        @Override
+        protected void onPreExecute() {
+            pd = new ProgressDialog(getContext());
+            pd.setMessage("Loading...");
+            pd.setCancelable(false);
+            this.pd.show();
+
+            super.onPreExecute();
+        }
 
         @Override
         protected void onPostExecute(Object o) {
+            if(pd != null && pd.isShowing())
+            {
+                pd.dismiss();
+            }
             super.onPostExecute(o);
             String no_internet_msg = "No Internet Connection";
             String no_records_msg = "No records found.";
