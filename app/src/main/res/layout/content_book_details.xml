@@ -27,8 +27,9 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:scaleType="fitCenter"
+                />
+                <!--android:src="@drawable/five_point_someone"-->
 
-                android:src="@drawable/five_point_someone" />
         </RelativeLayout>
     </LinearLayout>
 

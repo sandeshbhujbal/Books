@@ -7,7 +7,9 @@
         android:id="@+id/id_cover_dialogue_image"
         android:layout_height="315dp"
         android:layout_gravity="center"
-        android:src="@drawable/five_point_someone"
         />
+        <!--android:src="@drawable/five_point_someone"-->
+
+
 
 </LinearLayout>

@@ -128,7 +128,8 @@ public class MainActivityFragment extends Fragment {
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
             String no_internet_msg = "No Internet Connection";
-            String no_records_msg = "No fecords found.";
+            String no_records_msg = "No records found.";
+            String internet_connection_failed_msg = "Failed to connect to Internet";
             //Handle errors
             if(o != null) {
                 if (o.toString() == "emtpyInputStream") {
@@ -143,7 +144,13 @@ public class MainActivityFragment extends Fragment {
                     Snackbar snackbar = Snackbar
                             .make(getView(), no_internet_msg, Snackbar.LENGTH_LONG);
                     snackbar.show();
+                } else if (o.toString() == "ioException") {
+                    Snackbar snackbar = Snackbar
+                            .make(getView(), internet_connection_failed_msg, Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
+
+
             }
             RVAdapter adapter = new RVAdapter(books);
             rv.setAdapter(adapter);
