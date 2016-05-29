@@ -39,9 +39,6 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class MainActivityFragment extends Fragment {
     HttpURLConnection urlConnection = null;
     BufferedReader reader = null;
@@ -134,8 +131,8 @@ public class MainActivityFragment extends Fragment {
             pd = new ProgressDialog(getContext());
             pd.setMessage("Loading...");
             pd.setCancelable(false);
+            pd.setCanceledOnTouchOutside(false);
             this.pd.show();
-
             super.onPreExecute();
         }
 
@@ -240,6 +237,7 @@ public class MainActivityFragment extends Fragment {
                         books.add(book);
                     } catch (Exception e) {
                         Log.e("Json Parsing error", e.toString());
+                        return "emptyBuffer";
                     }
                 }
 
